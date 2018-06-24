@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !/index.php
+RewriteCond %{REQUEST_URI} !/skins/
+RewriteCond %{REQUEST_URI} !/userfiles/
+RewriteCond %{REQUEST_URI} !^/.well-known/
+RewriteRule (.+) /index.php [L]
