@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  doksite:
+    image: robostlund/nginx-php-mysql-static:latest
+    container_name: ptube_1
+    restart: always
+    ports:
+     - 127.0.0.1:8080:80
+    environment:
+     - MYSQL_DB_NAME=ptube
+     - MYSQL_DB_USER=ptube
+     - MYSQL_DB_PASS=ptube
+     - MYSQLDUMP_ENABLED=true
+     - NGINX_X_FORWARDED_FOR=true
+     - MEMCACHED_ENABLED=true
+     - MEMCACHED_MEM=128m
+     - GIT_WEBSITE_REPO=https://github.com/andreaskasper/ptube.git
+     - GIT_WEBSITE_BRANCH=master
+     - GIT_WEBSITE_CRON_PULL=true
+    volumes:
+     - ./data:/data
+     - ./www:/var/www_git/public_html
